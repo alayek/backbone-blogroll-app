@@ -22,9 +22,47 @@ var BlogView = Backbone.View.extend({
 	initialize: function() {
 		this.template = _.template($('.blogs-list-template').html());
 	},
+	events : {
+		// when element with given class is clicked, fire the function
+		'click .edit-blog' : 'edit',
+		'click .update-blog': 'update',
+		'click .cancel-edit': 'cancel',
+		'click .delete-blog': 'delete'
+	},
 	render: function() {
 		this.$el.html(this.template(this.model.toJSON()));
 		return this;
+	},
+	edit: function() {
+		this.$('.edit-blog').hide();
+		this.$('.delete-blog').hide();
+		this.$('.update-blog').show();
+		this.$('.cancel-edit').show();
+
+		// store current values
+		var author = this.$('.author').html();
+		var title = this.$('.title').html();
+		var url = this.$('.url').html();
+
+		this.$('.author').html('<input type="text" class="form-control author-update" value="' + author + '">');
+		this.$('.title').html('<input type="text" class="form-control title-update" value="' + title + '">');
+		this.$('.url').html('<input type="text" class="form-control url-update" value="' + url + '">');
+	},
+	update : function() {
+		// invoke set method only once.
+		// if you invoke it more, 
+		// the 'change' event would emit those many times
+		this.model.set({
+			'author': $('.author-update').val(),
+			'title': $('.title-update').val(),
+			'url': $('.url-update').val()
+		});
+	},
+	cancel: function() {
+		this.render();
+	},
+	delete: function() {
+		this.model.destroy();
 	}
 }); // for a single blog
 
@@ -32,7 +70,10 @@ var BlogsView = Backbone.View.extend({
 	model: blogs,
 	el: $('.blogs-list'),
 	initialize: function() {
+		var self = this;
 		this.model.on('add', this.render, this);
+		this.model.on('change', this.render, this);
+		this.model.on('remove', this.render, this);
 	},
 	render: function() {
 		var self = this;

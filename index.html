@@ -32,8 +32,19 @@
 		<td><span class="author"><%= author %></span></td>
 		<td><span class="title"><%= title %></span></td>
 		<td><span class="url"><%= url %></span></td>
-		<td><button type="button" class="btn btn-default edit-blog"><span class="glyphicon glyphicon-pencil"></span></button></td>
-		<td><button type="button" class="btn btn-danger delete-blog"><span class="glyphicon glyphicon-trash"></span></button></td>
+		<td><button type="button" class="btn btn-default edit-blog">
+				<span class="glyphicon glyphicon-pencil"></span>
+			</button>
+			<button type="button" class="btn btn-danger delete-blog">
+				<span class="glyphicon glyphicon-trash"></span>
+			</button>
+			<button type="button" class="btn btn-success update-blog" style="display:none">
+				<span class="glyphicon glyphicon-ok"></span>
+			</button>
+			<button type="button" class="btn btn-danger cancel-edit" style="display:none">
+				<span class="glyphicon glyphicon-remove"></span>
+			</button>
+		</td>
 
 	</script>
 	<script src="bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script>
