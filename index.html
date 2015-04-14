@@ -17,13 +17,25 @@
 					<th>URL</th>
 					<th>Action</th>
 				</tr>
+				<tr>
+					<td><input class="form-control author-input"></td>
+					<td><input class="form-control title-input"></td>
+					<td><input class="form-control url-input"></td>
+					<td><button class="btn btn-primary add-blog"><span class="glyphicon glyphicon-plus"></span></button></td>
+				</tr>
 			</thead>
-			<tbody>
+			<tbody class="blogs-list">
 			</tbody>
 		</table>
 	</div>
-	
+	<script type="text/template" class="blogs-list-template">
+		<td><span class="author"><%= author %></span></td>
+		<td><span class="title"><%= title %></span></td>
+		<td><span class="url"><%= url %></span></td>
+		<td><button type="button" class="btn btn-primary edit-blog"><span class="glyphicon glyphicon-pencil"></span></button></td>
+		<td><button type="button" class="btn btn-danger delete-blog"><span class="glyphicon glyphicon-trash"></span></button></td>
 
+	</script>
 	<script src="bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script>
 	<script type="text/javascript" src="bower_components/underscore/underscore.js"></script>
 	<script src="bower_components/bootstrap/dist/js/bootstrap.js" type="text/javascript"></script>
